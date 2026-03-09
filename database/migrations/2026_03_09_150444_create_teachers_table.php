@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('teacher_id');
-            
+
             $table->integer('tenant_id');
-            $table->string('first_name',50);
-            $table->string('last_name',50);
-            $table->string('subject',50);
+            $table->string('first_name', 50);
+            $table->string('last_name', 50);
+            $table->string('subject', 50);
         });
     }
 

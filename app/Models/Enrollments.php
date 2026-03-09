@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 class Enrollments extends Model
 {
-     use HasFactory;
+    use HasFactory;
+
     public $timestamps = false;
+
     protected $primaryKey = 'enrollment_id';
-     protected $fillable = [
+
+    protected $fillable = [
         'tenant_id',
         'student_id',
         'course_id',

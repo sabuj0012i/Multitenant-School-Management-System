@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('student_id');
-            
+
             $table->integer('tenant_id');
-            $table->string('first_name',50);
-            $table->string('last_name',50);
+            $table->string('first_name', 50);
+            $table->string('last_name', 50);
             $table->string('grade');
         });
     }
