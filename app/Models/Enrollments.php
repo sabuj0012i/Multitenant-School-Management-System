@@ -13,7 +13,6 @@ class Enrollments extends Model
         'tenant_id',
         'student_id',
         'course_id',
-        
         'enrollment_id',
     ];
 }
