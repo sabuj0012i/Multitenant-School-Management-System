@@ -84,3 +84,5 @@ The School Management System is a Laravel-based web application with the follwoi
 6. Demo Focus: Login, dashboard, data management, enrollments,and switching between schools to show multitenancy.
 
 The projcet is simple yet practical, ideal for learning multitenancy and buliding a SaaS-like application.
+
+This project
