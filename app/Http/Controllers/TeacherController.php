@@ -13,41 +13,53 @@ class TeacherController extends Controller
     public function index()
     {
         $tenantId = Auth::user()->tenant_id;
-        $teachers = Teacher::where('tenant_id',$tenantId)->get();
-        return Inertia::render('teacher/index',[
+
+        $teachers = Teacher::where('tenant_id', $tenantId)->get();
+
+        return Inertia::render('teacher/index', [
             'tenant_id' => $tenantId,
             'teachers' => $teachers,
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:50',
+            'last_name'  => 'required|string|max:50',
+            'subject'    => 'required|string|max:50',
+        ]);
 
-public function store(Request $request)
-{
-    $validated = $request->validate([
-        'first_name' => 'required|string|max50',
-        'last_name' => 'required|string|max50',
-        'subject' => 'required|string|max:50',
-    ]);
-    $validated['tenant_id'] = Auth::user()=>tenant_id;
-    Teacher::create($validated);
-    retrun Redirect::route('teachers.index');
-}
-public function update(Request $reqest, $id)
-{
-    $validated = $request->validate([
-        'frist_name' => 'required|string|max:50',        
-        'last_name' => 'required|string|max:50',        
-        'subject' => 'required|string|max:50',        
-    ])
-    $teacher = Teacher::where('tenant_id',Auth::user()->tenant_id)->findOrFail($id);
-    $teacher -> update($validated);
-    return Redirect::route('teachers.index');
-}
+        $validated['tenant_id'] = Auth::user()->tenant_id;
 
-public function destroy($id)
-{
-    $teacher = Teacher::where('tenant_id',Auth::user()->tenant_id)->findOrFail($id);
-    $teacher -> delete();
-    return Redirect::route('teacher.index');
-}
+        Teacher::create($validated);
+
+        return Redirect::route('teachers.index');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:50',
+            'last_name'  => 'required|string|max:50',
+            'subject'    => 'required|string|max:50',
+        ]);
+
+        $teacher = Teacher::where('tenant_id', Auth::user()->tenant_id)
+            ->findOrFail($id);
+
+        $teacher->update($validated);
+
+        return Redirect::route('teachers.index');
+    }
+
+    public function destroy($id)
+    {
+        $teacher = Teacher::where('tenant_id', Auth::user()->tenant_id)
+            ->findOrFail($id);
+
+        $teacher->delete();
+
+        return Redirect::route('teachers.index');
+    }
 }
