@@ -5,6 +5,7 @@ use Laravel\Fortify\Features;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EnrollmentController;
 
 Route::inertia('/', 'welcome', [
     'canRegister' => Features::enabled(Features::registration()),
@@ -31,6 +32,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
     Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
     Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->name('courses.destroy');
+
+    Route::get('/enrollments',[EnrollmentController::class, 'index'])->name('enrollments.index');
+    Route::post('/enrollments',[EnrollmentController::class, 'store'])->name('enrollments.store');
+    Route::put('/enrollments/{id}',[EnrollmentController::class, 'update'])->name('enrollments.update');
+    Route::delete('/enrollments/{id}',[EnrollmentController::class, 'destroy'])->name('enrollments.destroy');
 
 });
 
